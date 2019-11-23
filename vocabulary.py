@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 '''
 Creates vocabulary file from given corpus file.
 Author  : Asim Gunes
@@ -14,7 +16,7 @@ positional arguments:
 
 optional arguments:
   -h, --help          show this help message and exit
-  --maxsize Max_Size  Maximum vocabuary size to export
+  --maxsize Max_Size  Maximum vocabulary size to export
   --simple            Only export words without word counts
 '''
 
@@ -24,7 +26,7 @@ def getVocabulary(corpus):
     v = { }                                         # Initializing empty dictionary
     index = 0
     vsize = 0
-    print('Reading corpus file: ', corpus)
+    print('Reading corpus file: {}'.format(corpus))
     with open(args.corpus, 'r') as fp:              # Opening corpus
         for line in fp:                             # Reading corpus line by line
             index += 1
@@ -38,8 +40,8 @@ def getVocabulary(corpus):
                     v[word] = 1                     # 
                     vsize += 1
             if index % 10000 == 0:
-                print('Reading corpus in line: ', index, ', Vocabulary Size:', vsize)
-    print('Corpus completed. Total Lines: ', index, ', Vocabulary Size:', vsize)
+                print('Reading corpus in line: {}, Vocabulary Size: {}'.format(index, vsize))
+    print('Corpus completed. Total Lines: {}, Vocabulary Size: {}'.format(index, vsize))
     return v, vsize                                 # Returning the dictionary
 
 def saveVocabulary(vocabulary, file, simple=False, size=None):
@@ -71,7 +73,7 @@ if __name__ == '__main__':
     parser = ArgumentParser(description='Creates vocabulary file from given corpus file.')
     parser.add_argument('corpus', metavar='Corpus_File', help='Corpus file to extract vocabulary')
     parser.add_argument('vocabulary', metavar='Vocabulary_File', help='Vocabulary file name to save')
-    parser.add_argument('--maxsize', metavar='Max_Size', help='Maximum vocabuary size to export', type=int)
+    parser.add_argument('--maxsize', metavar='Max_Size', help='Maximum vocabulary size to export', type=int)
     parser.add_argument('--simple', help='Only export words without word counts', action='store_true')
     # Parsing arguments
     args = parser.parse_args()
