@@ -1,6 +1,6 @@
 # AsmFx NLPToolkit
 
-AsmFx NLPToolkit is a set of Python command line scripts for basic NLP operations like cleaning and preparing data. 
+AsmFx NLPToolkit is a set of Python command line scripts for basic NLP operations like normalizing and preparing data. 
 
 ## Script Files
 
