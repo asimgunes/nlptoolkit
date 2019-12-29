@@ -70,7 +70,7 @@ def saveVocabulary(vocabulary, file, simple=False, sentunk=False,size=None):
 
 def main(args):
     v, vsize = getVocabulary(args.corpus)                                           # Get vocabulary dictionary
-    saveVocabulary(v, args.vocabulary, simple=args.simple, size=args.maxsize)       # Save vocabulary dictionary file
+    saveVocabulary(v, args.vocabulary, simple=args.simple, sentunk=args.sentunk, size=args.maxsize)       # Save vocabulary dictionary file
     print('Operation completed succesfully.')
 
 if __name__ == '__main__':
