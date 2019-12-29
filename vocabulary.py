@@ -44,13 +44,18 @@ def getVocabulary(corpus):
     print('Corpus completed. Total Lines: {}, Vocabulary Size: {}'.format(index, vsize))
     return v, vsize                                 # Returning the dictionary
 
-def saveVocabulary(vocabulary, file, simple=False, size=None):
+def saveVocabulary(vocabulary, file, simple=False, sentunk=False,size=None):
     index = 0
     if(size):
         print('Exporting vocabulary to file: ', file, ', with MaxSize:', size)
     else:
         print('Exporting vocabulary to file: ', file)
     with open(args.vocabulary, 'w') as fp:                                  # Opening vocabulary file
+        if(sentunk):
+            fp.write('<S>\n')
+            fp.write('</S>\n')
+            fp.write('<UNK>\n')
+            index += 3
         for k in sorted(vocabulary, key=vocabulary.get, reverse=True):      # Getting descending ordered vocabular list
             if simple:
                 fp.write('{}\n'.format(k))                                  # Writing in simple format: only word
@@ -74,6 +79,7 @@ if __name__ == '__main__':
     parser.add_argument('corpus', metavar='Corpus_File', help='Corpus file to extract vocabulary')
     parser.add_argument('vocabulary', metavar='Vocabulary_File', help='Vocabulary file name to save')
     parser.add_argument('--maxsize', metavar='Max_Size', help='Maximum vocabulary size to export', type=int)
+    parser.add_argument('--sentunk', help='Exports <S> </S> and <UNK>', action='store_true')
     parser.add_argument('--simple', help='Only export words without word counts', action='store_true')
     # Parsing arguments
     args = parser.parse_args()
